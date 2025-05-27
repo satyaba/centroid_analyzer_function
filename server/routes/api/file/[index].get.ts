@@ -14,7 +14,6 @@ export default defineEventHandler(async (event) => {
     const db = new Databases(client)
 
     const name = getRouterParam(event, 'index')
-    const params = name.split("_")
 
     const docsList = await db.listDocuments(
         process.env.APPWRITE_DB_ID,
