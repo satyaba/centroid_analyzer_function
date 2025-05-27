@@ -1,8 +1,11 @@
-import '@dotenvx/dotenvx/config'
+import * as dotenv from "dotenv";
 import { Client, Databases, Storage, Query } from "node-appwrite";
 
 export default defineEventHandler(async (event) => {
     const client = new Client();
+    const env = dotenv.config()['parsed']
+    console.log(env);
+    
 
     client
         .setEndpoint(process.env.APPWRITE_URL)
@@ -14,6 +17,7 @@ export default defineEventHandler(async (event) => {
     const db = new Databases(client)
 
     const name = getRouterParam(event, 'index')
+
 
     const docsList = await db.listDocuments(
         process.env.APPWRITE_DB_ID,
